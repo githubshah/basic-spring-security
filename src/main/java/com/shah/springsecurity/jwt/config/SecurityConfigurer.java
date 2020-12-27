@@ -1,7 +1,7 @@
 package com.shah.springsecurity.jwt.config;
 
-import com.shah.springsecurity.jwt.service.ExtUserDetailService;
 import com.shah.springsecurity.jwt.filter.JwtRequestFilter;
+import com.shah.springsecurity.jwt.service.ExtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
