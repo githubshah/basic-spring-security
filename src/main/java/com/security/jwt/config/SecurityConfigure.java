@@ -36,6 +36,8 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated();
     }
 
+    // Need to add in new spring framework version
+    // AuthenticationManager in your configuration
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
