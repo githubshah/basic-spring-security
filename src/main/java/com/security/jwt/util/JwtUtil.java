@@ -1,9 +1,9 @@
 package com.security.jwt.util;
 
-import com.security.jwt.model.UserDetail;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -37,9 +37,9 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(UserDetail userDetail) {
+    public String generateToken(UserDetails userDetail) {
         Map<String, Object> claims = new HashMap();
-        return createToken(claims, userDetail.getUserName());
+        return createToken(claims, userDetail.getUsername());
     }
 
     private String createToken(Map<String, Object> claims, String userName) {
@@ -51,8 +51,8 @@ public class JwtUtil {
             .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 
-    public Boolean validateToken(String token, UserDetail userDetail) {
+    public Boolean validateToken(String token, UserDetails userDetail) {
         final String userName = extractUserName(token);
-        return userName.equals(userDetail.getUserName()) && !isTokenExpired(token);
+        return userName.equals(userDetail.getUsername()) && !isTokenExpired(token);
     }
 }
