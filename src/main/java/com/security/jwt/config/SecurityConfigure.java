@@ -31,7 +31,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
     // treat incoming password without any hashing techniques.
     // else throw exception There is no PasswordEncoder mapped for the id "null"
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -46,8 +46,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    // Need to add in new spring framework version
-    // AuthenticationManager in your configuration
+    // AuthenticationManager Bean does not provided by the new Spring version 2.4.1.
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
