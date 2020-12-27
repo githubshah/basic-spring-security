@@ -13,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
-
-
     @Autowired
     private ExtUserDetailService userDetailService;
 
@@ -24,24 +22,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     // treat incoming password without any hashing techniques.
-// else throw exception There is no PasswordEncoder mapped for the id "null"
+    // else throw exception There is no PasswordEncoder mapped for the id "null"
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .authorizeRequests().antMatchers("/authenticate").permitAll()
-            .anyRequest().authenticated();
-    }
-
-    // Need to add in new spring framework version
-    // AuthenticationManager in your configuration
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 }
