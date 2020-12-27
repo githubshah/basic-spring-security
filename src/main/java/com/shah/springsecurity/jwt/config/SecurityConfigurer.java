@@ -3,7 +3,6 @@ package com.shah.springsecurity.jwt.config;
 import com.shah.springsecurity.jwt.service.ExtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,10 +20,20 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailService);
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/user").hasAnyRole("USER", "ADMIN")
+            .antMatchers("/admin").hasRole("ADMIN")
+            .antMatchers("/").permitAll()
+            .and().formLogin();
+    }
+
     // treat incoming password without any hashing techniques.
     // else throw exception There is no PasswordEncoder mapped for the id "null"
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+
 }
