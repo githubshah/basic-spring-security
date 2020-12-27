@@ -1,7 +1,7 @@
-package com.security.jwt.config;
+package com.springsecurity.jwt.config;
 
-import com.security.jwt.filter.JwtRequestFilter;
-import com.security.jwt.service.MyUserDetailService;
+import com.springsecurity.jwt.filter.JwtRequestFilter;
+import com.springsecurity.jwt.service.ExtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,17 +15,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-public class SecurityConfigure extends WebSecurityConfigurerAdapter {
+public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserDetailService myUserDetailService;
+    private ExtUserDetailService extUserDetailService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailService);
+        auth.userDetailsService(extUserDetailService);
     }
 
     // treat incoming password without any hashing techniques.

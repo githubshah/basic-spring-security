@@ -1,4 +1,4 @@
-package com.security.jwt.model;
+package com.springsecurity.jwt.model;
 
 public class AuthenticationRequest {
 

@@ -1,9 +1,9 @@
-package com.security.jwt.controller;
+package com.springsecurity.jwt.controller;
 
-import com.security.jwt.model.AuthenticationRequest;
-import com.security.jwt.model.AuthenticationResponse;
-import com.security.jwt.service.MyUserDetailService;
-import com.security.jwt.util.JwtUtil;
+import com.springsecurity.jwt.model.AuthenticationRequest;
+import com.springsecurity.jwt.model.AuthenticationResponse;
+import com.springsecurity.jwt.service.ExtUserDetailService;
+import com.springsecurity.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController {
+public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private MyUserDetailService userDetailsService;
+    private ExtUserDetailService userDetailsService;
 
     @Autowired
     private JwtUtil jwtUtil;

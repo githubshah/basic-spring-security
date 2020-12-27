@@ -1,7 +1,7 @@
-package com.security.jwt.filter;
+package com.springsecurity.jwt.filter;
 
-import com.security.jwt.service.MyUserDetailService;
-import com.security.jwt.util.JwtUtil;
+import com.springsecurity.jwt.service.ExtUserDetailService;
+import com.springsecurity.jwt.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
-    private MyUserDetailService userDetailService;
+    private ExtUserDetailService userDetailService;
 
     @Autowired
     private JwtUtil jwtUtil;
