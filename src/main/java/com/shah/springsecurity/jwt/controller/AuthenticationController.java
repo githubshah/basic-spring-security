@@ -29,6 +29,10 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> authentication(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         // standard token which spring takes from UI
+
+        /**
+         * 1.Authenticate the credential
+         */
         try {
             authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -38,6 +42,9 @@ public class AuthenticationController {
             throw new Exception("Bad credential");
         }
 
+        /**
+         * 1.Authorization of User.
+         */
         UserDetails userDetails =
             userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
