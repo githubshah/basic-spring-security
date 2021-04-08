@@ -31,7 +31,7 @@ public class AuthenticationController {
         // standard token which spring takes from UI
 
         /**
-         * 1.Authenticate the credential
+         * 1.Authenticate the credential with authorities
          */
         try {
             authenticationManager.authenticate(
