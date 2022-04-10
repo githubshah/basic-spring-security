@@ -1,11 +1,10 @@
 package com.shah.springsecurity.jwt.config;
 
+import com.shah.springsecurity.jwt.config.provider.UserAuthenticationProviderImpl;
 import com.shah.springsecurity.jwt.service.ExtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -16,9 +15,17 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private ExtUserDetailService userDetailService;
 
+    @Autowired
+    UserAuthenticationProviderImpl provider;
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailService);
+//    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService);
+        auth.authenticationProvider(provider);
     }
 
     // treat incoming password without any hashing techniques.
