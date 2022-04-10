@@ -30,10 +30,9 @@ public class AuthenticationController {
     public ResponseEntity<?> authentication(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         // standard token which spring takes from UI
         try {
-            authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    authenticationRequest.getUsername(), authenticationRequest.getPassword())
-            );
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                    authenticationRequest.getUsername(), authenticationRequest.getPassword());
+            authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         } catch (BadCredentialsException badCredentialsException) {
             throw new Exception("Bad credential");
         }
