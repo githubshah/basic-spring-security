@@ -9,12 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 @EnableWebSecurity
@@ -40,7 +39,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                         return config;
                     }
                 })
-                .and().authorizeRequests().anyRequest().permitAll()
+                //.and().csrf().disable()
+                //.and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                .authorizeRequests().anyRequest().permitAll()
                 .and().httpBasic()
                 .and().formLogin();
     }
