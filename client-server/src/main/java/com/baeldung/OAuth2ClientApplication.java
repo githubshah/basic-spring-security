@@ -3,6 +3,7 @@ package com.baeldung;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/README.md
 //https://www.baeldung.com/spring-security-oauth-auth-server
 //https://github.com/Baeldung/spring-security-oauth/blob/master/oauth-authorization-server/README.md
 
