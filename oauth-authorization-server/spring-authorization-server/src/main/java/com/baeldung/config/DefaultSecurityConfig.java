@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class DefaultSecurityConfig {
 
     @Bean
@@ -26,8 +26,8 @@ public class DefaultSecurityConfig {
     @Bean
     UserDetailsService users() {
         UserDetails user = User.withDefaultPasswordEncoder()
-          .username("admin")
-          .password("password")
+          .username("user")
+          .password("user")
           .roles("USER")
           .build();
         return new InMemoryUserDetailsManager(user);
