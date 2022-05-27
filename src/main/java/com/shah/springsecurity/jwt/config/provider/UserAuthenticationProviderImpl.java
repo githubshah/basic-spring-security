@@ -38,8 +38,8 @@ public class UserAuthenticationProviderImpl implements AuthenticationProvider {
         }
         final List<GrantedAuthority> grantedAuths = new ArrayList<>();
         grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-        final UserDetails principal = new User(name, pwd, grantedAuths);
-        final Authentication auth = new UsernamePasswordAuthenticationToken(principal, "p1", grantedAuths);
+        final UserDetails userDetails = new User(name, pwd, grantedAuths);
+        final Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, "p1", grantedAuths);
         return auth;
     }
 
